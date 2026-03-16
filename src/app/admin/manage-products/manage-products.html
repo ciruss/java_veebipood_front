@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Active</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (product of products; track product.id) {
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}€</td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.active ? 'Yes' : 'No' }}</td>
+      <td>{{ product.category.name || 'Uncategorized' }}</td>
+      <td>
+        <button (click)="editProduct(product.id)">Edit</button>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

@@ -1,0 +1,18 @@
+@if (cart.length > 0) {
+<h1>Ostukorv</h1>
+@for (cartProduct of cart; track $index) {
+<div class="cart-item">
+  <span>{{ cartProduct.product.name }} - {{ cartProduct.product.price }}€</span>
+  <button (click)="decreaseQuantity($index)">-</button>
+  <span>{{ cartProduct.quantity }}</span>
+  <button (click)="increaseQuantity($index)">+</button>
+  <span>{{ cartProduct.product.price * cartProduct.quantity }}€</span>
+  <button (click)="removeFromCart(cartProduct.product)">Eemalda</button>
+</div>
+}
+<p>Kokku: {{ totalPrice() }}€</p>
+<br />
+<button (click)="checkout()">Kinnita ost</button>
+} @else {
+<p>Ostukorv on tühi.</p>
+}

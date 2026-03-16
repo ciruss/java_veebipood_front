@@ -1,0 +1,16 @@
+<h1>Manage Categories</h1>
+<ul>
+  @for (category of categories; track $index) {
+  <li>
+    <div>
+      <span>{{ category.name }}</span>
+      <button (click)="deleteCategory(category.id)">Delete</button>
+    </div>
+  </li>
+  }
+</ul>
+<br />
+<form (submit)="addCategory(newCategoryName); newCategoryName = ''">
+  <input type="text" name="categoryName" [(ngModel)]="newCategoryName" placeholder="New category name" />
+  <button type="submit">Add Category</button>
+</form>

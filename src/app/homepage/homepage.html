@@ -1,0 +1,8 @@
+@for (product of products; track $index) {
+<div class="product-card">
+  <h2>{{ product.name }}</h2>
+  <p>{{ product.description }}</p>
+  <p>Hind: {{ product.price }}€</p>
+  <button (click)="addToCart(product)">Add to Cart</button>
+</div>
+}
