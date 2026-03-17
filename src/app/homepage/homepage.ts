@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { environment } from '../../environments/environments';
 
@@ -9,7 +10,7 @@ const backendUrl = environment.backendUrl;
 
 @Component({
   selector: 'app-homepage',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })

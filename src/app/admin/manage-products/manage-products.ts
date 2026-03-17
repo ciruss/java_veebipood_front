@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { environment } from '../../../environments/environments';
-
 import { Product } from '../../models/product';
 
 const backendUrl = environment.backendUrl;
 
 @Component({
   selector: 'app-manage-products',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './manage-products.html',
   styleUrl: './manage-products.css',
 })
@@ -27,10 +27,16 @@ export class ManageProducts {
   }
 
   deleteProduct(productId: number) {
-    console.log(`Deleting product with ID: ${productId}`);
-  }
-
-  editProduct(productId: number) {
-    console.log(`Editing product with ID: ${productId}`);
+    fetch(`${backendUrl}/products/${productId}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.products = data;
+        this.detectChange.detectChanges();
+      })
+      .catch((error) => {
+        console.error('Error deleting product:', error);
+      });
   }
 }

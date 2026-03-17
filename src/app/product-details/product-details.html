@@ -1,0 +1,14 @@
+@if (!product.id) {
+<p>Toodet ei leitud.</p>
+} @else if (product.id) {
+<div class="product-card">
+  <h2>{{ product.name }}</h2>
+  <p>{{ product.description }}</p>
+  <p>Hind: {{ product.price }}€</p>
+  <p>Laos: {{ product.stock }} tk</p>
+  <p>Kategooria: {{ product.category.name }}</p>
+  <!-- <button (click)="addToCart(product)">Add to Cart</button> -->
+</div>
+} @else {
+<p>Loading...</p>
+}

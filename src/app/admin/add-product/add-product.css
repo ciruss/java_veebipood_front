@@ -1,0 +1,19 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}

@@ -4,5 +4,6 @@
   <p>{{ product.description }}</p>
   <p>Hind: {{ product.price }}€</p>
   <button (click)="addToCart(product)">Add to Cart</button>
+  <button routerLink="/product/{{ product.id }}">View Details</button>
 </div>
 }

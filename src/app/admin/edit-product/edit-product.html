@@ -1,1 +1,39 @@
-<p>edit-product works!</p>
+@if (!product) {
+<p>Toodet ei leitud.</p>
+} @else if(product) {
+<div class="container">
+  <h1>Add product</h1>
+  <div class="input-container">
+    <label>Name</label>
+    <input [(ngModel)]="product.name" />
+  </div>
+  <div class="input-container">
+    <label>Description</label>
+    <input [(ngModel)]="product.description" />
+  </div>
+  <div class="input-container">
+    <label>Price</label>
+    <input type="number" [(ngModel)]="product.price" />
+  </div>
+  <div class="input-container">
+    <label>Stock</label>
+    <input type="number" [(ngModel)]="product.stock" />
+  </div>
+  <div class="checkbox-container">
+    <label>Active</label>
+    <input type="checkbox" [(ngModel)]="product.active" />
+  </div>
+  <div class="input-container">
+    <label>Category</label>
+    <select [(ngModel)]="product.category.id">
+      <option [ngValue]="0">No category</option>
+      @for (category of categories; track $index) {
+      <option [ngValue]="category.id">{{ category.name }}</option>
+      }
+    </select>
+  </div>
+  <button (click)="editProduct()">Edit product</button>
+</div>
+} @else {
+<p>Loading...</p>
+}

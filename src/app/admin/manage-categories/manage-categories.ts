@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { environment } from '../../../environments/environments';
@@ -16,11 +16,14 @@ export class ManageCategories {
   categories: Category[] = [];
   newCategoryName: string = '';
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit() {
     fetch(`${backendUrl}/categories`)
       .then((response) => response.json())
       .then((data) => {
         this.categories = data;
+        this.cdr.detectChanges();
       });
   }
 
@@ -34,15 +37,19 @@ export class ManageCategories {
     })
       .then((response) => response.json())
       .then((newCategory) => {
-        this.categories.push(newCategory);
+        this.categories = [...this.categories, newCategory];
+        this.cdr.detectChanges();
       });
   }
 
   deleteCategory(categoryId: number) {
     fetch(`${backendUrl}/categories/${categoryId}`, {
       method: 'DELETE',
-    }).then(() => {
-      this.categories = this.categories.filter((cat) => cat.id !== categoryId);
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.categories = data;
+        this.cdr.detectChanges();
+      });
   }
 }

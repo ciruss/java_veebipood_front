@@ -1,16 +1,27 @@
 <h1>Manage Categories</h1>
-<ul>
-  @for (category of categories; track $index) {
-  <li>
-    <div>
-      <span>{{ category.name }}</span>
-      <button (click)="deleteCategory(category.id)">Delete</button>
-    </div>
-  </li>
-  }
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (category of categories; track category.id) {
+    <tr>
+      <td>{{ category.id }}</td>
+      <td>{{ category.name }}</td>
+      <td>
+        <!-- <button (click)="editCategory(category.id)">Edit</button> -->
+        <button (click)="deleteCategory(category.id)">Delete</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
 <br />
 <form (submit)="addCategory(newCategoryName); newCategoryName = ''">
-  <input type="text" name="categoryName" [(ngModel)]="newCategoryName" placeholder="New category name" />
+  <input name="categoryName" [(ngModel)]="newCategoryName" placeholder="New category name" />
   <button type="submit">Add Category</button>
 </form>
