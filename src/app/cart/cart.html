@@ -12,6 +12,19 @@
 }
 <p>Kokku: {{ totalPrice() }}€</p>
 <br />
+
+<button (click)="changeCountry('EE')">Eesti</button>
+<button (click)="changeCountry('LV')">Läti</button>
+<button (click)="changeCountry('LT')">Leedu</button>
+
+<label for="parcelMachine">Vali pakiautomaat:</label>
+<select id="parcelMachine">
+  @for (parcelMachine of parcelMachines; track $index) {
+  <option>{{ parcelMachine.NAME }} - {{ parcelMachine.ZIP }}</option>
+  }
+</select>
+<br />
+<br />
 <button (click)="checkout()">Kinnita ost</button>
 } @else {
 <p>Ostukorv on tühi.</p>

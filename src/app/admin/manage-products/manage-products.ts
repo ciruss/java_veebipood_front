@@ -3,27 +3,37 @@ import { RouterLink } from '@angular/router';
 
 import { environment } from '../../../environments/environments';
 import { Product } from '../../models/product';
+import { FormsModule } from '@angular/forms';
 
 const backendUrl = environment.backendUrl;
 
 @Component({
   selector: 'app-manage-products',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './manage-products.html',
   styleUrl: './manage-products.css',
 })
 export class ManageProducts {
   products: Product[] = [];
+  searchTerm: string = '';
 
   private detectChange = inject(ChangeDetectorRef);
 
-  ngOnInit() {
-    fetch(`${backendUrl}/products`)
+  private fetchProducts() {
+    fetch(`${backendUrl}/products/admin?searchTerm=${this.searchTerm}`)
       .then((response) => response.json())
       .then((data) => {
         this.products = data;
         this.detectChange.detectChanges();
       });
+  }
+
+  ngOnInit() {
+    this.fetchProducts();
+  }
+
+  search() {
+    this.fetchProducts();
   }
 
   deleteProduct(productId: number) {

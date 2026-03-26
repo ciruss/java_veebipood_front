@@ -1,4 +1,44 @@
-@for (product of products; track $index) {
+<div class="summary">
+  <span>Tooteid kokku: {{ productsPage.totalElements }}</span>
+  <span>Lehekülgi kokku: {{ productsPage.totalPages }}</span>
+</div>
+<div>
+  <button (click)="pageNumber.set(pageNumber() - 1)" [disabled]="pageNumber() === 0">Eelnev</button>
+  <span>Lehekülg {{ pageNumber() + 1 }}</span>
+  <button (click)="pageNumber.set(pageNumber() + 1)"
+    [disabled]="pageNumber() >= productsPage.totalPages - 1">Järgmine</button>
+</div>
+<div class="summary">
+  <label for="sortBy">Sorteerimise alus:</label>
+  <select id="sortBy" [(ngModel)]="sortBy">
+    <option value="id">ID</option>
+    <option value="name">Nimi</option>
+    <option value="price">Hind</option>
+  </select>
+
+  <label for="sortOrder">Sorteerimise järjekord:</label>
+  <select id="sortOrder" [(ngModel)]="sortOrder">
+    <option value="asc">Kasvavalt</option>
+    <option value="desc">Kahanevalt</option>
+  </select>
+
+  <label for="pageSize">Lehekülje suurus:</label>
+  <select id="pageSize" [(ngModel)]="pageSize">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+  </select>
+
+  <label for="category">Kategooria:</label>
+  <select id="category" [(ngModel)]="sortCategory">
+    <option value="">Kõik</option>
+    @for (category of categories; track $index) {
+    <option value="{{ category.id }}">{{ category.name }}</option>
+    }
+  </select>
+</div>
+
+@for (product of productsPage.content; track $index) {
 <div class="product-card">
   <h2>{{ product.name }}</h2>
   <p>{{ product.description }}</p>

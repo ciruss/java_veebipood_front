@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 
 import { environment } from '../../environments/environments';
 
 import { OrderRow } from '../models/orderRow';
+import { ParcelMachine } from '../models/parcelMachine';
 
 const backendUrl = environment.backendUrl;
 
@@ -14,6 +15,28 @@ const backendUrl = environment.backendUrl;
 })
 export class Cart {
   cart: OrderRow[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  parcelMachines: ParcelMachine[] = [];
+  country: string = 'EE';
+
+  private detectChange = inject(ChangeDetectorRef);
+
+  ngOnInit() {
+    this.fetchParcelMachines();
+  }
+
+  fetchParcelMachines() {
+    fetch(`${backendUrl}/parcelMachines?country=${this.country}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.parcelMachines = data;
+        this.detectChange.detectChanges();
+      });
+  }
+
+  changeCountry(country: string) {
+    this.country = country;
+    this.fetchParcelMachines();
+  }
 
   totalPrice(): number {
     return this.cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
