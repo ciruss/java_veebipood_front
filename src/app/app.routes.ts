@@ -8,6 +8,7 @@ import { ManageCategories } from './admin/manage-categories/manage-categories';
 import { ManageProducts } from './admin/manage-products/manage-products';
 import { NotFound } from './not-found/not-found';
 import { ProductDetails } from './product-details/product-details';
+import { CheckPayment } from './check-payment/check-payment';
 
 export const routes: Routes = [
   { path: '', component: Homepage },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'admin/manage-products', component: ManageProducts },
   { path: 'admin/manage-categories', component: ManageCategories },
   { path: 'product/:product_id', component: ProductDetails },
+  { path: 'payment', component: CheckPayment },
   { path: '**', component: NotFound },
 ];

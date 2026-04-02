@@ -1,0 +1,13 @@
+@if (!orderStatus) {
+<p>Loading...</p>
+} @else if (orderStatus === 'settled') {
+<p>Tellimus edukalt tasutud.</p>
+} @else if (orderStatus === 'abandoned') {
+<p>Ootasid liiga kaua, maksmine katkestati.</p>
+} @else if (orderStatus === 'failed') {
+<p>Maksmine tühistati.</p>
+} @else if (orderStatus === 'voided') {
+<p>Maksmisel sisselogimine tühistati.</p>
+} @else {
+<p>Tellimust ei õnnestunud tasuda.</p>
+}

@@ -82,13 +82,7 @@ export class Cart {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response.ok) {
-          alert(
-            `Order ID: ${response.id} placed successfully with total price: ${response.total}€`,
-          );
-        } else {
-          alert('Failed to place order. Please try again.');
-        }
+        window.location.href = response.link;
       });
   }
 }
