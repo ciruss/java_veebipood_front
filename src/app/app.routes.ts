@@ -9,9 +9,17 @@ import { ManageProducts } from './admin/manage-products/manage-products';
 import { NotFound } from './not-found/not-found';
 import { ProductDetails } from './product-details/product-details';
 import { CheckPayment } from './check-payment/check-payment';
+import { Signup } from './auth/signup/signup';
+import { Login } from './auth/login/login';
+import { Profile } from './auth/profile/profile';
+import { MyOrders } from './auth/my-orders/my-orders';
 
 export const routes: Routes = [
   { path: '', component: Homepage },
+  { path: 'signup', component: Signup },
+  { path: 'login', component: Login },
+  { path: 'profile', component: Profile },
+  { path: 'my-orders', component: MyOrders },
   { path: 'cart', component: Cart },
   { path: 'admin/add-product', component: AddProduct },
   { path: 'admin/edit-product/:product_id', component: EditProduct },

@@ -32,6 +32,7 @@ export class ManageCategories {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
       body: JSON.stringify({ name }),
     })
@@ -45,6 +46,9 @@ export class ManageCategories {
   deleteCategory(categoryId: number) {
     fetch(`${backendUrl}/categories/${categoryId}`, {
       method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     })
       .then((response) => response.json())
       .then((data) => {

@@ -39,6 +39,9 @@ export class ManageProducts {
   deleteProduct(productId: number) {
     fetch(`${backendUrl}/products/${productId}`, {
       method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
     })
       .then((response) => response.json())
       .then((data) => {

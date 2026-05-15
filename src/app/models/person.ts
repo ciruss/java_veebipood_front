@@ -8,4 +8,5 @@ export type Person = {
   password: string;
   personCode: string;
   address: Address;
+  role: string;
 };

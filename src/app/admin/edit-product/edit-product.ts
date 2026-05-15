@@ -48,6 +48,7 @@ export class EditProduct {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
       body: JSON.stringify(this.product),
     })

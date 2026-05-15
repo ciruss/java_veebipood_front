@@ -52,9 +52,7 @@ export class Cart {
     if (cartItem && cartItem.quantity > 1) {
       cartItem.quantity--;
       localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-
-    if (cartItem && cartItem.quantity === 1) {
+    } else if (cartItem && cartItem.quantity === 1) {
       this.removeFromCart(cartItem.product);
     }
   }
@@ -68,10 +66,11 @@ export class Cart {
   }
 
   checkout(): void {
-    fetch(`${backendUrl}/orders?personId=1`, {
+    fetch(`${backendUrl}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
       body: JSON.stringify(
         this.cart.map((item) => ({

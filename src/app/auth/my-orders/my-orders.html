@@ -1,0 +1,18 @@
+<div class="my-orders-container">
+  <h1>My Orders</h1>
+  @for (order of orders; track $index) {
+  <h2>Order #{{ order.id }}</h2>
+  <p>Date: {{ order.created }}</p>
+  <p>Total: {{ order.total }}€</p>
+  <div class="order-items">
+    <h3>Items:</h3>
+    <ul>
+      @for (item of order.orderRows; track $index) {
+      <li>
+        {{ item.product.name }} - Quantity: {{ item.quantity }}
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>

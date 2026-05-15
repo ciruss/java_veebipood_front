@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Signup</h1>
+  <div class="input-container">
+    <label>First Name</label>
+    <input [(ngModel)]="person.firstName" />
+  </div>
+  <div class="input-container">
+    <label>Last Name</label>
+    <input [(ngModel)]="person.lastName" />
+  </div>
+  <div class="input-container">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="person.email" />
+  </div>
+  <div class="input-container">
+    <label>Personal code</label>
+    <input type="number" [(ngModel)]="person.personCode" />
+  </div>
+  <div class="input-container">
+    <label>Password</label>
+    <input type="password" [(ngModel)]="person.password" />
+  </div>
+  <div class="input-container">
+    <label>Role (for testing)</label>
+    <select [(ngModel)]="person.role">
+      @for (role of roles; track $index) {
+      <option value="{{ role }}">{{ role }}</option>
+      }
+    </select>
+  </div>
+  <button (click)="updateProfile()">Update profile</button>
+</div>
